@@ -12,6 +12,8 @@ gem "sqlite3", ">= 1.4"
 gem "puma", ">= 5.0"
 
 gem "bundler-audit"
+gem "brakeman"
+gem "rubocop-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
