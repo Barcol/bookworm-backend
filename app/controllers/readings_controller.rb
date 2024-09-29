@@ -1,30 +1,19 @@
 class ReadingsController < ApplicationController
-  before_action :set_reading, only: %i[ show update destroy ]
-
-  # GET /readings
-  def index
-    @readings = Reading.all
-
-    render json: @readings
-  end
-
-  # GET /readings/1
-  def show
-    render json: @reading
-  end
+  before_action :set_reading, only: [:update]
+  before_action :set_book, only: [:create]
 
   # POST /readings
   def create
-    @reading = Reading.new(reading_params)
+    @reading = Reading.new(reading_params.merge(book: @book))
 
     if @reading.save
-      render json: @reading, status: :created, location: @reading
+      render json: @reading, status: :created
     else
       render json: @reading.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /readings/1
+  # PUT /readings/1
   def update
     if @reading.update(reading_params)
       render json: @reading
@@ -33,19 +22,18 @@ class ReadingsController < ApplicationController
     end
   end
 
-  # DELETE /readings/1
-  def destroy
-    @reading.destroy!
+  private
+
+  def set_reading
+    @reading = Reading.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reading
-      @reading = Reading.find(params[:id])
-    end
+  def set_book
+    @book = Book.find(params[:book_id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def reading_params
-      params.require(:reading).permit(:book_id, :start_date, :start_page, :end_date, :end_page)
-    end
+  # Only allow a list of trusted parameters through.
+  def reading_params
+    params.require(:reading).permit(:book_id, :start_date, :start_page, :end_date, :end_page)
+  end
 end
