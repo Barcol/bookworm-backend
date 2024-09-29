@@ -80,10 +80,13 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.8)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
+    brakeman (6.2.1)
+      racc
     builder (3.3.0)
     bundler-audit (0.9.2)
       bundler (>= 1.2.0, < 3)
@@ -110,7 +113,9 @@ GEM
     irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    json (2.7.2)
     jsonapi-renderer (0.2.2)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -142,6 +147,10 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    parallel (1.26.3)
+    parser (3.3.5.0)
+      ast (~> 2.4.1)
+      racc
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -192,9 +201,11 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
+    regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
     rspec-core (3.13.1)
@@ -214,6 +225,24 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    rubocop (1.66.1)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.4, < 3.0)
+      rubocop-ast (>= 1.32.2, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.32.3)
+      parser (>= 3.3.1.0)
+    rubocop-rails (2.26.2)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.52.0, < 2.0)
+      rubocop-ast (>= 1.31.1, < 2.0)
+    ruby-progressbar (1.13.0)
     sqlite3 (2.0.4)
       mini_portile2 (~> 2.8.0)
     stringio (3.1.1)
@@ -221,6 +250,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.6.0)
     webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -235,6 +265,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   bootsnap
+  brakeman
   bundler-audit
   debug
   pry
@@ -243,6 +274,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.4)
   rspec-rails (~> 7.0.0)
+  rubocop-rails
   sqlite3 (>= 1.4)
   tzinfo-data
 
